@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '4.1.8'
 
@@ -8,6 +8,7 @@ gem 'decent_exposure'
 gem 'decent_decoration'
 gem 'devise'
 gem 'simple_form', '~> 3.1.0rc'
+gem 'sass', '3.2.19'
 gem 'bootstrap-sass', '~> 3.1.0'
 gem 'haml-rails'
 gem 'sass-rails', github: 'rails/sass-rails'
@@ -19,6 +20,8 @@ gem 'therubyracer', platforms: :ruby
 gem 'travis'
 gem 'ffaker'
 gem 'konf'
+
+gem 'tzinfo-data'
 
 group :development do
   gem 'spring'
