@@ -1,0 +1,18 @@
+%p#notice= notice
+%p#error= flash[:error]
+
+%h3= user.firstname + " " + user.lastname
+
+%p= user.email
+
+- if last_five_reviews.count == 0
+  \ This user has not reviewed any product yet.
+- else
+  = "Recent reviews by #{user.firstname + " " + user.lastname}:"
+  %br
+  %br
+  - last_five_reviews.each do |review|
+    %b= review.rating
+    = review.product.title
+    %p= review.content
+  
