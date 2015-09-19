@@ -9,6 +9,7 @@ class Product < ActiveRecord::Base
   
   def average_rating
     revs = self.reviews
+    return 0 if revs.count == 0
     revs.inject(0.0) { |sum,r| sum += r.rating } / revs.count
   end
 end

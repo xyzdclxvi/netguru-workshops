@@ -2,18 +2,40 @@
 
 %table.table
   %tr
-    %th Name
-    %th
-    %th
-    %th
-
+    %th Category
+    %th Popular products
+    %th #
+    %th Price range
+    - if user_signed_in? && current_user.admin?
+      %th Edit
+      %th Delete
+    
   - categories.each do |category|
     %tr
-      %td= category.name
-      %td= link_to 'Show', category
+      %td= link_to category.name, category
+      
+      -# show 3 highest rated products in this category
+      %td
+        - category.products.sort_by { |x| x.average_rating }.reverse[0...3].each do |popular_product|
+          = link_to popular_product.title, category_product_path(popular_product.category.id, popular_product.id) 
+          %br
+          = "$" + popular_product.price.to_s + ","
+          - unless popular_product.average_rating == 0
+            = "rating: " + popular_product.average_rating.round(1).to_s 
+          %br
+          
+      %td= category.products.count
+      
+      -# show lowest and highest price of products in this category
+      %td
+        - first,*trash,last = category.products.order(:price)
+        = link_to "$" + first.price.to_s, category_product_path(first.category.id, first.id) 
+        \ &mdash;
+        = link_to "$" + last.price.to_s, category_product_path(last.category.id, last.id) 
+        
       - if user_signed_in? && current_user.admin?
         %td= link_to 'Edit', edit_category_path(category)
-        %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 - if user_signed_in? && current_user.admin?
