@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
   expose_decorated(:reviews, ancestor: :product)
 
   def index
+    render 'categories/show'
   end
 
   def show
