@@ -12,26 +12,27 @@
     
   - categories.each do |category|
     %tr
-      %td= link_to category.name, category
+      %td
+        \ icon (linked)
+        = link_to category.name, category
       
       -# show 3 highest rated products in this category
       %td
         - category.products.sort_by { |x| x.average_rating }.reverse[0...3].each do |popular_product|
-          = link_to popular_product.title, category_product_path(popular_product.category.id, popular_product.id) 
-          %br
-          = "$" + popular_product.price.to_s + ","
-          - unless popular_product.average_rating == 0
-            = "rating: " + popular_product.average_rating.round(1).to_s 
-          %br
+          %span{:title => "#{popular_product.title}\n$#{popular_product.price}" + ( popular_product.average_rating == 0 ? "" : ", rating: #{popular_product.average_rating.round(1)}" ) }
+            = link_to "icon " + popular_product.title, category_product_path(popular_product.category.id, popular_product.id) 
+
           
       %td= category.products.count
       
       -# show lowest and highest price of products in this category
       %td
         - first,*trash,last = category.products.order(:price)
-        = link_to "$" + first.price.to_s, category_product_path(first.category.id, first.id) 
+        %span{:title => "#{first.title}\n$#{first.price}" + ( first.average_rating == 0 ? "" : ", rating: #{first.average_rating.round(1)}" ) }
+          = link_to "$" + first.price.to_s, category_product_path(first.category.id, first.id) 
         \ &mdash;
-        = link_to "$" + last.price.to_s, category_product_path(last.category.id, last.id) 
+        %span{:title => "#{last.title}\n$#{last.price}" + ( last.average_rating == 0 ? "" : ", rating: #{last.average_rating.round(1)}" ) }
+          = link_to "$" + last.price.to_s, category_product_path(last.category.id, last.id) 
         
       - if user_signed_in? && current_user.admin?
         %td= link_to 'Edit', edit_category_path(category)

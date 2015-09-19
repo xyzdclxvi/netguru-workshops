@@ -14,6 +14,10 @@
 %p
   %b Category
   = product.category.name
+  
+%p
+  \ Added by:
+  = link_to product.user.firstname + " " + product.user.lastname, product.user
 
 %h3 Reviews
 - if user_signed_in?

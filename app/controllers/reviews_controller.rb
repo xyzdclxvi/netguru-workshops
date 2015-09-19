@@ -2,6 +2,7 @@ class ReviewsController < ApplicationController
 
   expose(:review)
   expose(:product)
+  expose(:category) { product.category }
 
   def edit
   end
@@ -12,7 +13,7 @@ class ReviewsController < ApplicationController
 
   def create
     self.review = Review.new(review_params)
-
+    review.user = current_user
     if review.save
       product.reviews << review
       redirect_to category_product_url(product.category, product), notice: 'Review was successfully created.'

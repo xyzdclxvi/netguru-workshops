@@ -1,0 +1,10 @@
+%h1 
+  \ Your review for
+  = link_to product.title, category_product_path(product.category, product)
+  
+- if user_signed_in?
+  = render 'reviews/form'
+- else
+  %p You have to log in to write a review.
+  
+= link_to 'Cancel', category_product_path(product.category, product), class: 'btn btn-primary'

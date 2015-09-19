@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   expose(:user)
   expose(:reviews) { user.reviews }
-  expose(:last_five_reviews) { reviews[0...5] }
+  expose(:last_five_reviews) { reviews.reverse[0...5] }
   expose(:products) { user.products }
   
   def show
