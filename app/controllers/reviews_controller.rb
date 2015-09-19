@@ -5,6 +5,10 @@ class ReviewsController < ApplicationController
 
   def edit
   end
+  
+  def index
+    redirect_to category_product_url(product.category, product)
+  end
 
   def create
     self.review = Review.new(review_params)

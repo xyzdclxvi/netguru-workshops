@@ -1,0 +1,10 @@
+%h1
+  Listing reviews by
+  = user.firstname + " " + user.lastname
+  
+- if reviews.count == 0
+  \ This user has not reviewed any products yet.
+- reviews.each do |review|
+  %b= review.rating
+  = link_to review.product.title, category_product_path(review.product.category.id, review.product.id)
+  %p= review.content

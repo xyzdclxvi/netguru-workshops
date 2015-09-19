@@ -1,22 +1,27 @@
-%h1 Listing products
+%h1
+  Listing products by 
+  = user.firstname + " " + user.lastname
 
-%table
-  %tr
-    %th Title
-    %th Description
-    %th Price
-    %th
-    %th
-    %th
-
-  - products.each do |product|
+- if products.count == 0
+  \ This user has not added any products yet.
+- else  
+  %table
     %tr
-      %td= product.title
-      %td= product.description
-      %td= product.price
-      %td= link_to 'Show', category_product_path(product.category, product)
-      - if user_signed_in? && current_user == product.user
-        %td= link_to 'Edit', edit_category_product_path(product.category, product)
-        %td= link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
+      %th Title
+      %th Description
+      %th Price
+      %th
+      %th
+      %th
+
+    - products.each do |product|
+      %tr
+        %td= product.title
+        %td= product.description
+        %td= product.price
+        %td= link_to 'Show', category_product_path(product.category, product)
+        - if user_signed_in? && current_user == product.user
+          %td= link_to 'Edit', edit_category_product_path(product.category, product)
+          %td= link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
 
 %br

@@ -1,8 +1,18 @@
 class UsersController < ApplicationController
   expose(:user)
-  expose(:last_five_reviews) { user.reviews[0...5] }
+  expose(:reviews) { user.reviews }
+  expose(:last_five_reviews) { reviews[0...5] }
+  expose(:products) { user.products }
   
   def show
+  end
+  
+  def show_user_products
+    render 'products/index'
+  end
+  
+  def show_user_reviews
+    render 'reviews/index'
   end
   
   private

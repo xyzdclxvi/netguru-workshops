@@ -5,8 +5,9 @@
 
 %p= user.email
 
+%br
 - if last_five_reviews.count == 0
-  \ This user has not reviewed any product yet.
+  %p This user has not reviewed any products yet.
 - else
   = "Recent reviews by #{user.firstname + " " + user.lastname}:"
   %br
@@ -15,7 +16,12 @@
     %b= review.rating
     = review.product.title
     %p= review.content
-  
-  
+
+
+%br    
+%p
+  = link_to "Show all user's products", user_products_path(user.id)
+  \&nbsp;|&nbsp;
+  = link_to "Show all user's reviews", user_reviews_path(user.id)  
   
 \ ADD DATES TO REVIEWS
