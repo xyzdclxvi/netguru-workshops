@@ -7,7 +7,7 @@
 
 %p
   = "joined:"
-  %span{:title => user.created_at.strftime("%d-%m-%y, %H:%M:%S")}
+  %span{"data-toggle" => "tooltip", "data-placement" => "right", :title => user.created_at.strftime("%d-%m-%y, %H:%M:%S")}
     = "#{time_ago_in_words(user.created_at)} ago" 
 
 %br
@@ -21,7 +21,7 @@
     %b= review.rating
     \ -
     = link_to review.product.title + ",", category_product_path(review.product.category.id, review.product.id)
-    %span{:title => "I'd rather put \"#{time_ago_in_words(review.created_at)} ago\" here and the full date in the tooltip"}
+    %span{"data-toggle" => "tooltip", "data-placement" => "right", :title => "I'd rather put \"#{time_ago_in_words(review.created_at)} ago\" here and the full date in the tooltip"}
       = "on " + review.created_at.strftime("%d-%m-%y")
     %p= review.content
 

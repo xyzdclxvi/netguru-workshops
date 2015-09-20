@@ -5,21 +5,22 @@
 - if products.count == 0
   \ This user has not added any products yet.
 - else  
-  %table
+  %table.table
     %tr
       %th Title
       %th Description
       %th Price
-      %th
-      %th
-      %th
+      - if user_signed_in? && current_user == user
+        %th Edit
+        %th Delete
 
     - products.each do |product|
       %tr
-        %td= product.title
+        %td
+          = link_to "icon", category_product_path(product.category, product) 
+          = link_to product.title, category_product_path(product.category, product)
         %td= product.description
         %td= product.price
-        %td= link_to 'Show', category_product_path(product.category, product)
         - if user_signed_in? && current_user == product.user
           %td= link_to 'Edit', edit_category_product_path(product.category, product)
           %td= link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
