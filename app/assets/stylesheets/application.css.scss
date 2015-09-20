@@ -1,1 +1,27 @@
 @import "bootstrap";
+
+.thumbnail {
+  @extend .img-thumbnail;
+  float: left;
+  height: 40px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  vertical-align:middle
+  
+  &:hover {
+    -moz-box-shadow: 0 0 10px #ccc;
+    -webkit-box-shadow: 0 0 10px #ccc;
+    box-shadow: 0 0 10px #ccc;
+  }
+}
+
+.thumbnail-larger {
+  @extend .thumbnail;
+  height: 100px;
+}
+
+.table-row-center {
+    margin-top:auto;
+    margin-bottom:auto;
+}
+

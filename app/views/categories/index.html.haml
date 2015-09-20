@@ -1,10 +1,10 @@
 %h1 Listing categories
 
-.pull-right 
-  %h4
-    %span{"data-toggle" => "tooltip", "data-placement" => "left", :href => "#", :title => "Try hovering over different elements for more information"}
-      %button.btn
-        %b ?
+
+%h4.pull-right 
+  %span{"data-toggle" => "tooltip", "data-placement" => "left", :href => "#", :title => "Try hovering over different elements for more information"}
+    %button.btn
+      %b ?
 
 %table.table
   %tr
@@ -21,9 +21,8 @@
     
   - categories.each do |category|
     %tr
-      %td
-        \ icon (linked)
-        = link_to category.name, category
+      %td.lead
+        = link_to image_tag('category_placeholder.jpg', {class: 'thumbnail'}) + category.name, category
       
       -# show 3 highest rated products in this category
       %td
@@ -31,8 +30,7 @@
           \ -
         - else
           - category.products.sort_by { |x| x.average_rating }.reverse[0...3].each do |popular_product|
-            %span{"data-toggle" => "tooltip", :title => "#{popular_product.title}<br />$#{popular_product.price}" + ( popular_product.average_rating == 0 ? "" : ", rating: #{popular_product.average_rating.round(1)}" ) }
-              = link_to "icon " + popular_product.title, category_product_path(popular_product.category.id, popular_product.id) 
+            = link_to image_tag('product_placeholder.gif', {class: 'thumbnail', "data-toggle" => "tooltip", "data-container" => "body" , :title => "#{popular_product.title}<br />$#{popular_product.price}" + ( popular_product.average_rating == 0 ? "" : ", rating: #{popular_product.average_rating.round(1)}" )}), category_product_path(popular_product.category.id, popular_product.id) 
 
           
       %td= category.products.count

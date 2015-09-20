@@ -1,12 +1,14 @@
 %p#notice= notice
 %p#error= flash[:error]
 
+= image_tag('user_placeholder.jpg', {class: 'thumbnail-larger'})
+
 %h3= user.firstname + " " + user.lastname
 
-%p= user.email
+%p= "contact e-mail: #{user.email}"
 
 %p
-  = "joined:"
+  = "joined"
   %span{"data-toggle" => "tooltip", "data-placement" => "right", :title => user.created_at.strftime("%d-%m-%y, %H:%M:%S")}
     = "#{time_ago_in_words(user.created_at)} ago" 
 
