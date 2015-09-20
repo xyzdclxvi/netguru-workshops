@@ -1,4 +1,9 @@
 %p= review.content
 %p
+  \ rated: 
   %b= review.rating
+  \ by
   %em= link_to review.author, review.user
+  %span{"data-toggle" => "tooltip", "data-placement" => "right", :title => review.created_at.strftime("%d-%m-%y, %H:%M:%S")}
+    = "#{time_ago_in_words(review.created_at)} ago" 
+%br

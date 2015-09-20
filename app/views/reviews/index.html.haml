@@ -5,6 +5,14 @@
 - if reviews.count == 0
   \ This user has not reviewed any products yet.
 - reviews.each do |review|
-  %b= review.rating
-  = link_to review.product.title, category_product_path(review.product.category.id, review.product.id)
+  \Reviewed 
+  = link_to review.product.title + ":", category_product_path(review.product.category.id, review.product.id)
   %p= review.content
+  %p
+    \ rated: 
+    %b= review.rating
+    \ by
+    %em= link_to user.firstname + " " + user.lastname, review.user
+    %span{"data-toggle" => "tooltip", "data-placement" => "right", :title => review.created_at.strftime("%d-%m-%y, %H:%M:%S")}
+      = "#{time_ago_in_words(review.created_at)} ago" 
+  %br
