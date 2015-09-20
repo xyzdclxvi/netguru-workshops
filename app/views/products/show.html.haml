@@ -1,30 +1,40 @@
 %p#notice= notice
 %p#error= flash[:error]
 
-%p
-  %b icon here
+%div
+  = image_tag('product_placeholder.gif', {class: 'thumbnail-largest'})
 
-%p
-  %b Title:
-  = product.title
-%p
-  %b Description:
-  = product.description
-%p
-  %b Price:
-  = "$#{product.price}"
+  %p
+    %b icon here
 
-%p
-  %b Category:
-  = link_to product.category.name, product.category
+  %p
+    %b Title:
+    = product.title
+    
+  %p
+    %b Price:
+    = "$#{product.price}"
+    
+  %p
+    %b Rating:
+    = product.average_rating.round(1)
+    
+  %p
+    %b Category:
+    = link_to product.category.name, product.category
   
-%p
-  %b Added by:
-  = link_to product.user.firstname + " " + product.user.lastname, product.user
-  %span{"data-toggle" => "tooltip", "data-placement" => "right", :title => product.created_at.strftime("%d-%m-%y, %H:%M:%S")}
-    = "#{time_ago_in_words(product.created_at)} ago" 
+  %p
+    %b Added by:
+    = link_to product.user.firstname + " " + product.user.lastname, product.user
+    %span{"data-toggle" => "tooltip", "data-placement" => "right", :title => product.created_at.strftime("%d-%m-%y, %H:%M:%S")}
+      = "#{time_ago_in_words(product.created_at)} ago" 
 
-<br />
+%div.cleared
+  %p
+    %b Description:
+    = product.description
+
+
 %h3 User reviews:
   
 = render reviews  

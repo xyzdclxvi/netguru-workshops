@@ -7,12 +7,12 @@
   margin-right: 10px;
   margin-bottom: 5px;
   vertical-align:middle
-  
-  &:hover {
-    -moz-box-shadow: 0 0 10px #ccc;
-    -webkit-box-shadow: 0 0 10px #ccc;
-    box-shadow: 0 0 10px #ccc;
-  }
+}
+
+.thumbnail:hover {
+  -moz-box-shadow: 0 0 10px #55f;
+  -webkit-box-shadow: 0 0 10px #55f;
+  box-shadow: 0 0 10px #55f;
 }
 
 .thumbnail-larger {
@@ -20,8 +20,22 @@
   height: 100px;
 }
 
+.thumbnail-largest {
+  @extend .thumbnail;
+  height: 200px;
+}
+
 .table-row-center {
     margin-top:auto;
     margin-bottom:auto;
 }
 
+div.cleared {
+  clear: left;
+}
+
+button.info-attention {
+  -moz-box-shadow: 0 0 20px #55f;
+  -webkit-box-shadow: 0 0 20px #55f;
+  box-shadow: 0 0 20px #55f;
+}

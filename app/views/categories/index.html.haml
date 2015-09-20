@@ -2,19 +2,19 @@
 
 
 %h4.pull-right 
-  %span{"data-toggle" => "tooltip", "data-placement" => "left", :href => "#", :title => "Try hovering over different elements for more information"}
-    %button.btn
+  %span{"data-toggle" => "tooltip", "data-placement" => "left", :href => "#", :title => "Try hovering over different elements for more information.<br/><br/>This icon doesn't glow anymore after you hovered over it."}
+    %button.btn.btn-default.info-attention
       %b ?
 
 %table.table
   %tr
     %th Category
     %th 
-      %span{"data-toggle" => "tooltip", :title => "Highest rated products in the category" } Popular products
+      %span{"data-toggle" => "tooltip", :title => "The highest rated products in the category" } Popular products
     %th
       %span{"data-toggle" => "tooltip", :title => "Number of products in the category" } #
     %th
-      %span{"data-toggle" => "tooltip", :title => "The least and most expensive product in the category" } Price range
+      %span{"data-toggle" => "tooltip", :title => "The least and the most expensive product in the category" } Price range
     - if user_signed_in? && current_user.admin?
       %th Edit
       %th Delete
@@ -22,14 +22,14 @@
   - categories.each do |category|
     %tr
       %td.lead
-        = link_to image_tag('category_placeholder.jpg', {class: 'thumbnail'}) + category.name, category
+        = link_to image_tag('category_placeholder.jpg', {class: 'thumbnail', "data-toggle" => "tooltip", :title => "The images are placeholders"}) + category.name, category
       
-      -# show 3 highest rated products in this category
+      -# show 5 highest rated products in this category
       %td
         - if category.products.count == 0
-          \ -
+          %span{"data-toggle" => "tooltip", :title => "There are no products in this category" } &ndash;
         - else
-          - category.products.sort_by { |x| x.average_rating }.reverse[0...3].each do |popular_product|
+          - category.products.sort_by { |x| x.average_rating }.reverse[0...5].each do |popular_product|
             = link_to image_tag('product_placeholder.gif', {class: 'thumbnail', "data-toggle" => "tooltip", "data-container" => "body" , :title => "#{popular_product.title}<br />$#{popular_product.price}" + ( popular_product.average_rating == 0 ? "" : ", rating: #{popular_product.average_rating.round(1)}" )}), category_product_path(popular_product.category.id, popular_product.id) 
 
           
@@ -38,12 +38,12 @@
       -# show lowest and highest price of products in this category
       %td
         - if category.products.count == 0
-          \ - 
+          %span{"data-toggle" => "tooltip", :title => "There are no products in this category" } &ndash;
         - else
           - first,*trash,last = category.products.order(:price)
           %span{"data-toggle" => "tooltip", :title => "#{first.title}<br />$#{first.price}" + ( first.average_rating == 0 ? "" : ", rating: #{first.average_rating.round(1)}" ) }
             = link_to "$" + first.price.to_s, category_product_path(first.category.id, first.id) 
-          \ &mdash;
+          \ &ndash;
           %span{"data-toggle" => "tooltip", :title => "#{last.title}<br />$#{last.price}" + ( last.average_rating == 0 ? "" : ", rating: #{last.average_rating.round(1)}" ) }
             = link_to "$" + last.price.to_s, category_product_path(last.category.id, last.id) 
         
