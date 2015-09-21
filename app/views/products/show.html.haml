@@ -36,11 +36,16 @@
 %h3 User reviews:
   
 = render reviews  
+
+- if reviews.count == 0
+  %p You can be the first one to review this product!
   
 - if user_signed_in?
   = render 'reviews/form'
 - else
-  %p You have to log in to write a review.
+  %p
+    = link_to "Log in", new_user_session_path
+    \ to write a review.
 
 %br
 -#- if user_signed_in? && current_user == product.user
