@@ -1,18 +1,16 @@
-%h1
+%h2
   Listing reviews by
-  = user.firstname + " " + user.lastname
-  
+  = link_to user.firstname + " " + user.lastname, user
+%br  
 - if reviews.count == 0
   \ This user has not reviewed any products yet.
 - reviews.each do |review|
-  \Reviewed 
-  = link_to review.product.title + ":", category_product_path(review.product.category.id, review.product.id)
-  %p= review.content
-  %p
-    \ rated: 
-    %b= review.rating
-    \ by
-    %em= link_to user.firstname + " " + user.lastname, review.user
-    %span{"data-toggle" => "tooltip", "data-placement" => "right", :title => review.created_at.strftime("%d-%m-%y, %H:%M:%S")}
-      = "#{time_ago_in_words(review.created_at)} ago" 
-  %br
+  %blockquote
+    %p
+      %em= review.content
+    %footer
+      %b= "rated: " + review.rating.to_s
+      \ -
+      = link_to review.product.title + ",", category_product_path(review.product.category.id, review.product.id)
+      %span{"data-toggle" => "tooltip", "data-placement" => "right", :title => "I'd rather put \"#{time_ago_in_words(review.created_at)} ago\" here and the full date in the tooltip"}
+        = "on " + review.created_at.strftime("%d-%m-%y")

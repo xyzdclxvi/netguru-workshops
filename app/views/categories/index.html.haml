@@ -1,7 +1,15 @@
-%h1 Listing categories
 
 
-%h4.pull-right 
+.jumbotron
+  %h1 WORKSHOP PROJECT
+  %p.lead This is just some placeholder text so the design makes more sense.
+  - if user_signed_in?
+    - recommended_product = categories[0].products.sort_by { |x| x.average_rating }.reverse[0] # real recommendation would be me complex
+    = link_to 'Recommended For You', category_product_path(recommended_product.category.id, recommended_product.id), {class: 'btn btn-my btn-success'}
+  - else
+    = link_to 'Sign Up Now!', new_user_registration_path, {class: 'btn btn-my btn-success', "data-toggle" => "tooltip", "data-placement" => "bottom", :title => "It's free!"}
+
+.pull-right.lead 
   %span{"data-toggle" => "tooltip", "data-placement" => "left", :href => "#", :title => "Try hovering over different elements for more information.<br/><br/>This icon stops glowing after hovering over it."}
     %button.btn.btn-default.info-attention
       %b ?
@@ -39,6 +47,8 @@
       %td
         - if category.products.count == 0
           %span{"data-toggle" => "tooltip", :title => "There are no products in this category" } &ndash;
+        - elsif category.products.count == 1
+          %span{"data-toggle" => "tooltip", :title => "There is only one product in this category" } &ndash;
         - else
           - first,*trash,last = category.products.order(:price)
           %span{"data-toggle" => "tooltip", :title => "#{first.title}<br />$#{first.price}" + ( first.average_rating == 0 ? "" : ", rating: #{first.average_rating.round(1)}" ) }
@@ -52,5 +62,6 @@
         %td= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
+%br
 - if user_signed_in? && current_user.admin?
-  = link_to 'New Category', new_category_path
+  = link_to 'Add new category', new_category_path, { class: 'btn btn-primary', "data-toggle" => "tooltip", :title => "You are an admin. Tread lightly." }

@@ -7,7 +7,7 @@
           %li= msg
 
   .form-group
-    = f.label :name
-    = f.text_field :name, class: 'form-control'
+    =# f.label :name, label: false
+    = f.text_field :name, class: 'form-control', placeholder: "Category name", label: false
 
-  = f.submit 'Save', class: 'btn btn-default'
+  = f.submit 'Add category', class: 'btn btn-lg btn-primary'

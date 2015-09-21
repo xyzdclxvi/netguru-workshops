@@ -5,7 +5,7 @@ class Product < ActiveRecord::Base
   
   validates :title, presence: true
   validates :description, presence: true
-  validates :price, presence: true, format: /\A\d+(?:\.\d{0,2})?\z/
+  validates :price, presence: true, numericality: true, format: /\A\d+(?:\.\d{0,2})?\z/
   
   def average_rating
     revs = self.reviews

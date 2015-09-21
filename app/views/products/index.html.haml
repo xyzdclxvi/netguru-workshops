@@ -1,7 +1,7 @@
-%h1
+%h2
   Listing products by 
-  = user.firstname + " " + user.lastname
-
+  = link_to user.firstname + " " + user.lastname, user
+%br
 - if products.count == 0
   \ This user has not added any products yet.
 - else  
@@ -10,6 +10,7 @@
       %th Title
       %th Description
       %th Price
+      %th Rating
       - if user_signed_in? && current_user == user
         %th Edit
         %th Delete
@@ -17,9 +18,14 @@
     - products.each do |product|
       %tr
         %td.lead
-          = link_to image_tag('product_placeholder.gif', {class: 'thumbnail'}) + product.title, category_product_path(product.category, product)
+          = link_to image_tag('product_placeholder.gif', {class: 'thumbnail float-left'}) + product.title, category_product_path(product.category, product)
         %td= product.description
-        %td= product.price
+        %td= "$" + product.price.to_s
+        %td
+          - if product.average_rating == 0
+            \ &ndash;
+          - else
+            = product.average_rating.round(1)
         - if user_signed_in? && current_user == product.user
           %td= link_to 'Edit', edit_category_product_path(product.category, product)
           %td= link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }

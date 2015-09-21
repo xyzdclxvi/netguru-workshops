@@ -1,10 +1,18 @@
-%h2 Sign up
-= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = f.error_notification
-  .form-inputs
-    = f.input :email, required: true, autofocus: true
-    = f.input :password, required: true
-    = f.input :password_confirmation, required: true
-  .form-actions
-    = f.button :submit, "Sign up"
-= render "devise/shared/links"
+- flash.each do |name, msg|
+  = content_tag :p, msg, class: "alert alert-danger alert-show", id: "flash_#{name}"
+
+
+.signin
+  %h2 Create an account:
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = f.error_notification
+    .form-inputs
+      = f.input :email, required: true, autofocus: true, placeholder: "Email", label: false
+      = f.input :firstname, required: true, placeholder: "First name", label: false
+      = f.input :lastname, required: true, placeholder: "Last name", label: false
+      = f.input :password, required: true, placeholder: "Password", label: false
+      = f.input :password_confirmation, required: true, placeholder: "Password confirmation", label: false
+    .form-actions
+      = f.button :submit, "Sign up", class: "btn btn-lg btn-primary btn-block"
+    %br
+  = render "devise/shared/links"

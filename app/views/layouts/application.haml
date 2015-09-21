@@ -7,6 +7,8 @@
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
+    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Droid+Serif'
+    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Droid+Sans'
 
   %body
     .container-narrow
@@ -24,9 +26,14 @@
 
       .row
         .col-lg-12
+          %p.alert.alert-success#notice= notice
+          %p.alert.alert-danger#error= flash[:error]
           = yield
           
       .push-it-down
       %hr
       .footer
-        %p A Netguru workshop project, augmented by Konrad Piekutowski
+        %p
+          \ A Netguru workshop project, augmented by Konrad Piekutowski &mdash;
+          %span.glyphicon.glyphicon-envelope
+          \ km.piekutowski@gmail.com

@@ -1,15 +1,11 @@
-%p#notice= notice
-%p#error= flash[:error]
+
 
 %div
-  = image_tag('product_placeholder.gif', {class: 'thumbnail-largest'})
+  = image_tag('product_placeholder.gif', {class: 'thumbnail-largest float-left'})
 
-  %p
-    %b icon here
-
-  %p
-    %b Title:
-    = product.title
+  %h3
+    %b
+      = product.title
     
   %p
     %b Price:
@@ -30,11 +26,12 @@
       = "#{time_ago_in_words(product.created_at)} ago" 
 
 %div.cleared
+  %br
   %p
     %b Description:
     = product.description
 
-
+%br
 %h3 User reviews:
   
 = render reviews  
@@ -44,7 +41,8 @@
 - else
   %p You have to log in to write a review.
 
-- if user_signed_in? && current_user == product.user
-  = link_to 'Edit', edit_category_product_path(category.id, product.id)
-  \|
-= link_to 'Back', category_products_path, class: 'btn btn-primary'
+%br
+-#- if user_signed_in? && current_user == product.user
+-#  = link_to 'Edit', edit_category_product_path(category.id, product.id)
+-#  \|
+= link_to 'Back to products', category_products_path, class: 'btn btn-primary'

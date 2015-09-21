@@ -1,19 +1,47 @@
 @import "bootstrap";
 
 body {
-  padding-top: 20px;
-  padding-bottom: 40px;
-  height: 100%;
+  background: url(background_image.jpg) repeat 0 0;
+  background-size:   cover;
 }
 
-/* Custom container */
+hr {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #eeeeee;
+}
+
+/* fonts */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Droid Serif', Georgia, Times, serif;
+    text-shadow: 1px 1px 1px #ccc;
+}
+ 
+p, div {
+    font-family: 'Droid Sans', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+
+
+/* containers */
 .container-narrow {
+  padding: 30px;
   margin: 0 auto;
   max-width: 900px;
-
+  background: url(cream_dust_transparent.png) repeat 0 0;
 }
+
 .container-narrow > hr {
   margin: 30px 0;
+}
+
+.jumbotron {
+  background-color: transparent;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.nav-pills {
+  margin-top: 5px;
 }
 
 .navbar {
@@ -21,17 +49,80 @@ body {
   padding-right: 10px;
 }
 
-.nav-pills {
-  margin-top: 5px;
+select.form-control {
+  width: 60px;
 }
 
+blockquote {
+  border-left: 5px solid #aaaaff;
+}
+
+.category-margin {
+  margin-left: 44px;
+}
+
+.nice-product-page {
+  padding: 5px;
+  border: 1px solid #ddd;
+  -moz-box-shadow: 8px 5px 10px 2px #CFDDFF;
+  -webkit-box-shadow: 8px 5px 10px 2px #CFDDFF;
+  box-shadow: 8px 5px 10px 2px #CFDDFF;
+}
+
+.container-padded-more {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.not-that-far {
+  margin-right: 25px;
+}
+
+
+/* less stupid buttons */
+.btn-my {  
+  padding: 14px 24px;
+  font-size: 21px;
+  line-height: 1.2;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-image: linear-gradient(to bottom, #62c462, #51a351);
+  background-repeat: repeat-x;
+  border-radius: 6px
+}
+
+.btn-my:hover {
+  color: #ffffff;
+  background-color: #51a351;
+}
+
+.btn:hover {
+  background-position: 0 -15px;
+}
+
+button.info-attention {
+  -moz-box-shadow: 0 0 20px #55f;
+  -webkit-box-shadow: 0 0 20px #55f;
+  box-shadow: 0 0 20px #55f;
+}
+
+
+/* empty container that pushes footer way down with js */
 .push-it-down {
   margin-top: 100px;
 }
 
 
+/* alerts */
+.alert {
+  display: none;
+}
+
+.alert-show {
+  display: block;
+}
 
 
+/* image thumbnails */
 .thumbnail {
   @extend .img-thumbnail;
   height: 40px;
@@ -80,8 +171,10 @@ div.cleared {
   clear: left;
 }
 
-button.info-attention {
-  -moz-box-shadow: 0 0 20px #55f;
-  -webkit-box-shadow: 0 0 20px #55f;
-  box-shadow: 0 0 20px #55f;
+
+/* sign in */
+.signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
 }

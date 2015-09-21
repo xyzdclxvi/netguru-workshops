@@ -1,18 +1,25 @@
-%p#notice= notice
-%p#error= flash[:error]
+
 
 = image_tag('user_placeholder.jpg', {class: 'thumbnail-larger  float-left'})
 
-%h3= user.firstname + " " + user.lastname
-
-%p= "contact e-mail: #{user.email}"
+%h4
+  %b= user.firstname + " " + user.lastname
 
 %p
-  = "joined"
+  %span.glyphicon.glyphicon-envelope
+  %b= user.email
+
+%p
+  = "Joined"
   %span{"data-toggle" => "tooltip", "data-placement" => "right", :title => user.created_at.strftime("%d-%m-%y, %H:%M:%S")}
     = "#{time_ago_in_words(user.created_at)} ago" 
 
+- if user_signed_in? && current_user == user
+  = link_to "Edit your account", edit_user_registration_path(current_user)
+    
+.cleared
 %br
+
 - if last_five_reviews.count == 0
   %p This user has not reviewed any products yet.
 - else
@@ -20,12 +27,17 @@
   %br
   %br
   - last_five_reviews.each do |review|
-    %b= review.rating
-    \ -
-    = link_to review.product.title + ",", category_product_path(review.product.category.id, review.product.id)
-    %span{"data-toggle" => "tooltip", "data-placement" => "right", :title => "I'd rather put \"#{time_ago_in_words(review.created_at)} ago\" here and the full date in the tooltip"}
-      = "on " + review.created_at.strftime("%d-%m-%y")
-    %p= review.content
+    %blockquote
+      %p
+        %em= review.content
+      %footer
+        %b= "rated: " + review.rating.to_s
+        \ -
+        = link_to review.product.title + ",", category_product_path(review.product.category.id, review.product.id)
+        %span{"data-toggle" => "tooltip", "data-placement" => "right", :title => "I'd rather put \"#{time_ago_in_words(review.created_at)} ago\" here and the full date in the tooltip"}
+          = "on " + review.created_at.strftime("%d-%m-%y")
+      
+      
 
 
 %br    
