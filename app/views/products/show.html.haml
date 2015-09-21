@@ -10,10 +10,11 @@
   %p
     %b Price:
     = "$#{product.price}"
-    
-  %p
-    %b Rating:
-    = product.average_rating.round(1)
+  
+  - if product.average_rating != 0  
+    %p
+      %b Rating:
+      = product.average_rating.round(1)
     
   %p
     %b Category:
