@@ -1,12 +1,42 @@
 @import "bootstrap";
 
+body {
+  padding-top: 20px;
+  padding-bottom: 40px;
+  height: 100%;
+}
+
+/* Custom container */
+.container-narrow {
+  margin: 0 auto;
+  max-width: 900px;
+
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+.navbar {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.nav-pills {
+  margin-top: 5px;
+}
+
+.push-it-down {
+  margin-top: 100px;
+}
+
+
+
+
 .thumbnail {
   @extend .img-thumbnail;
-  float: left;
   height: 40px;
   margin-right: 10px;
-  margin-bottom: 5px;
-  vertical-align:middle
+  margin-bottom: 0px;
 }
 
 .thumbnail:hover {
@@ -23,6 +53,22 @@
 .thumbnail-largest {
   @extend .thumbnail;
   height: 200px;
+}
+
+.float-left {
+  float: left;
+}
+
+.absolute-nav-ava {
+  position: relative;
+  left: 0px;
+  top: 0px;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.navbar-right {
+  max-height: 20px;
 }
 
 .table-row-center {

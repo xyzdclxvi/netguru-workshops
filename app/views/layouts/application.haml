@@ -9,18 +9,24 @@
     = javascript_include_tag 'application'
 
   %body
-    %nav.navbar.navbar-default
-      .container-fluid
+    .container-narrow
+      %nav.navbar.navbar-default
         .navbar-header
           %span.navbar-brand #{AppConfig.workshops_name}
-        %p.navbar-text.navbar-right
+        %ul.nav.nav-pills.pull-right
           - if user_signed_in?
-            = link_to current_user.email, current_user
-            = link_to "Log out", destroy_user_session_path, :method => :delete
+            = link_to image_tag('user_placeholder.jpg', {class: 'thumbnail  float-left absolute-nav-ava', "data-toggle" => "tooltip", "data-placement" => "bottom", :title => current_user.email}), current_user
+         
+            %li= link_to "Log out", destroy_user_session_path, :method => :delete
           - else
-            = link_to "Log in", new_user_session_path
-            = link_to "Sign up", new_user_registration_path
-    .container-fluid
+            %li= link_to "Log in", new_user_session_path
+            %li= link_to "Sign up", new_user_registration_path
+
       .row
         .col-lg-12
           = yield
+          
+      .push-it-down
+      %hr
+      .footer
+        %p A Netguru workshop project, augmented by Konrad Piekutowski
