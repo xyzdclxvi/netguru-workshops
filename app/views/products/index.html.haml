@@ -19,7 +19,7 @@
       %tr
         %td.lead
           = link_to image_tag('product_placeholder.gif', {class: 'thumbnail float-left'}) + product.title, category_product_path(product.category, product)
-        %td= product.description
+        %td= (product.description.length > 80 ? (product.description[0...80] + "...") : product.description)
         %td= "$" + product.price.to_s
         %td
           - if product.average_rating == 0

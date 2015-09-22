@@ -16,9 +16,9 @@ end
 
 #categories
 category_list = [
-  [ 'Winter Gear' ],
-  [ 'Vacation Packages' ],
-  [ 'Outdated Products' ]
+  'Winter Gear',
+  'Vacation Packages',
+  'Outdated Products'
 ]
 
 category_list.each do |name|
@@ -46,12 +46,13 @@ end
 #reviews
 review_list = [
   [ 'john@smi.th', 'Magnum Opus Skiis', '3', 'OK but mountain shoes are better.' ],
+  [ 'john@smi.th', 'Mountaineer Snowshoes', '5', 'Very good.' ],
   [ 'john@smi.th', 'Ultracraft Snowboard', '3', 'OK but mountain shoes are better.' ],
   [ 'john@smi.th', 'Hilleberg Winter Tent', '3', 'I sell mountain shoes and mountain shoes accessories.' ],
   [ 'john@smi.th', 'SKI TOWN Ski Logging', '2', 'I\'d rather be walking.' ],
   [ 'john@smi.th', 'Mountainshoe Logging', '5', 'Best thing ever.' ],
   [ 'john@smi.th', 'River Ride', '4', 'Better than expected.' ],
-  [ 'john@smi.th', '1906 Series Boundary Peak Snowshoes', '5', 'My favorite.' ],
+  [ 'john@smi.th', '1906 Series Snowshoes', '5', 'My favorite.' ],
   [ 'michael@jack.son', 'Mountaineer Snowshoes', '2', 'Nothing like real shoes.' ],
   [ 'michael@jack.son', 'River Ride', '5', 'Exciting.' ],
   [ 'generic@na.me', 'Mountaineer Snowshoes', '3', 'It works.' ],
