@@ -1,5 +1,5 @@
 #admin - login: admin@adm.in, password: passpass
-User.create(email: 'admin@adm.in', fisrtname: 'Admiral', lastname: 'In',  password: 'passpass', admin: true)
+User.create(email: 'admin@adm.in', firstname: 'Admiral', lastname: 'In',  password: 'passpass', admin: true)
 
 #regular users
 user_list = [
