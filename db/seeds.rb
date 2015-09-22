@@ -60,7 +60,7 @@ review_list = [
   [ 'angry@gob.lin', 'SKI TOWN Ski Logging', '5', 'I like.' ],
   [ 'angry@gob.lin', 'Mountaineer Snowshoes', '1', 'No fit.' ],
   [ 'angry@gob.lin', 'Magnum Opus Skiis', '1', 'I\'m goblin.' ],
-  [ 'angry@gob.lin', 'Hillberg Winter Tent', '2', 'Too large.' ],
+  [ 'angry@gob.lin', 'Hilleberg Winter Tent', '2', 'Too large.' ],
 ]
 
 review_list.each do |user_email, product_title, rating, content|
