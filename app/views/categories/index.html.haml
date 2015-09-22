@@ -30,7 +30,7 @@
   - categories.each do |category|
     %tr
       %td.lead
-        = link_to image_tag('category_placeholder.jpg', {class: 'thumbnail float-left', "data-toggle" => "tooltip", :title => "The images are placeholders"}) + category.name, category
+        = link_to image_tag('category_placeholder.jpg', {class: 'thumbnail float-left'}) + category.name, category
       
       -# show 5 highest rated products in this category
       %td
